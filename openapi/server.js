@@ -10,9 +10,11 @@ var bunyanToWinstonAdapter = require('bunyan-winston-adapter');
 
 var conf = require('./config');
 var redisTrait = require('./modules/redis');
+var tweetProvider = require('./modules/tweetProvider');
 
 // Global redis instance
 var redis = redisTrait.redis;
+var twitter = tweetProvider(conf);
 var winstonLogger = new winston.Logger({
     transports: [
         new (winston.transports.Console)({colorize: true, json: false})
@@ -72,6 +74,7 @@ require('./routes/api')(server, models, redis);
 require('./routes/user')(server, models, redis);
 require('./routes/face')(server, models, redis);
 require('./routes/magic8')(server, models, redis);
+require('./routes/tweet')(server, models, redis, twitter);
 
 //server.on('after', restify.auditLogger({
 //    log: logger
