@@ -29,7 +29,8 @@ var server = restify.createServer({
 // Initialize Models' injection
 var models = {
     user: require('./models/remote/user')(redis, conf),
-    face: require('./models/remote/face')(redis, conf)
+    face: require('./models/remote/face')(redis, conf),
+    magic8: require('./models/static/magic8')(redis, conf)
 };
 
 server.use(restify.acceptParser(server.acceptable));
@@ -70,6 +71,7 @@ require('./modules/reqtracker')(server, winstonLogger);
 require('./routes/api')(server, models, redis);
 require('./routes/user')(server, models, redis);
 require('./routes/face')(server, models, redis);
+require('./routes/magic8')(server, models, redis);
 
 //server.on('after', restify.auditLogger({
 //    log: logger
