@@ -11,5 +11,6 @@ module.exports = require('nconf')
         'datasmart.url': 'http://localhost:4420',
         'baseurlpath': '/api/v1',
         'source.user': 'http://api.randomuser.me/',
-        'source.face': 'http://uifaces.com/api/v1/random'
+        'source.face': 'http://uifaces.com/api/v1/random',
+        'twitter': require('./twitter.json')
     });
