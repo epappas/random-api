@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="Random data generator an Open API to let users depend on getting categorized random result .">
+    <title>random.io | Get Random</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/css/foundation.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+</head>
+<body style="background: #F0F0F0;">
+<div class="row">
+    <div class="large-12 columns">
+
+        <div class="row" style="background: #2c2e31;">
+            <div class="large-12 text-center columns" style="color: #F0F0F0;">
+                <h1 style="color: #F0F0F0;">
+                    RANDOM DATA GENERATOR
+                </h1>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: -25px;">
+
+            <div class="large-12 columns" style="margin-top: -25px;">
+                <div class="radius panel">
+
+                    <form>
+                        <div class="row collapse">
+
+                            <label>Fire a try</label>
+
+                            <div class="large-6 small-5 columns">
+                                <span class="prefix">http://random.io/api/v1/</span>
+                            </div>
+                            <div class="large-4 small-4 columns">
+                                <select id="method-select">
+                                    <option value="user">user</option>
+                                    <option value="magic8">magic8</option>
+                                    <option value="face">face</option>
+                                    <option value="tweet">tweet</option>
+                                </select>
+                            </div>
+
+                            <div class="large-2 small-3 columns">
+                                <a href="#" class="postfix button expand" onclick="fireReq()">GET</a>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row " >
+
+            <div class="large-12 columns " >
+                <pre id="json-area">
+                </pre>
+            </div>
+
+        </div>
+
+        <footer class="row">
+            <div class="large-12 columns">
+                <hr/>
+                <div class="row">
+
+                    <div class="large-6 columns">
+                        <p>© random.io. London.</p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/js/foundation.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.2/fastclick.min.js"></script>
+<script>
+    $(document).foundation();
+
+    function fireReq() {
+        $.ajax({
+            url: '/api/v1/' + $('#method-select').val(),
+            dataType: 'json',
+            success: function(data) {
+                $('#json-area').html(JSON.stringify(data, null, "\t"));
+                console.log(data);
+            }
+        });
+    }
+</script>
+</body>
+</html>
